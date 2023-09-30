@@ -1,30 +1,30 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
-// const props = defineProps({
-//     notes: Array,
-// });
-const notes = [
-    {
-        id: 1,
-        url: 'https://www.youtube.com/watch?v=6KT9T73-Iik&list=WL&index=7',
-        title: 'Node.jsとexpressでチャットアプリケーションを作ってみよう！',
-        note: 'Node.jsとExpressdeをチャットアプリケーションを実装しながら学習できる',
-        created_at: '2023-08-12',
-        updated_at: '2023-09-28',
-    },
-    {
-        id: 2,
-        url: 'https://www.youtube.com/watch?v=ufitZF-SgN8&ab_channel=NHK',
-        title: 'NHK人物録『岡本太郎』～NHKアーカイブス～',
-        note: '岡本太郎の人物紹介をしている長さがちょうどよい動画',
-        created_at: '2023-09-28',
-        updated_at: '2023-09-28',
-    },
-];
+const props = defineProps({
+    notes: Array,
+});
+// const notes = [
+//     {
+//         id: 1,
+//         url: 'https://www.youtube.com/watch?v=6KT9T73-Iik&list=WL&index=7',
+//         title: 'Node.jsとexpressでチャットアプリケーションを作ってみよう！',
+//         note: 'Node.jsとExpressdeをチャットアプリケーションを実装しながら学習できる',
+//         created_at: '2023-08-12',
+//         updated_at: '2023-09-28',
+//     },
+//     {
+//         id: 2,
+//         url: 'https://www.youtube.com/watch?v=ufitZF-SgN8&ab_channel=NHK',
+//         title: 'NHK人物録『岡本太郎』～NHKアーカイブス～',
+//         note: '岡本太郎の人物紹介をしている長さがちょうどよい動画',
+//         created_at: '2023-09-28',
+//         updated_at: '2023-09-28',
+//     },
+// ];
 
-console.log(notes);
+console.log(props.notes);
 </script>
 
 <template>
@@ -79,8 +79,12 @@ console.log(notes);
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="note in notes" :key="note.id">
-                                            <td class="px-4 py-3">{{ note.id }}</td>
+                                        <tr v-for="note in props.notes" :key="note.id">
+                                            <td class="px-4 py-3">
+                                                <Link :href="route('notes.show', { note: note })">
+                                                    {{ note.id }}
+                                                </Link>
+                                            </td>
                                             <td class="px-4 py-3">{{ note.title }}</td>
                                             <td class="px-4 py-3">{{ note.url }}</td>
                                             <td class="px-4 py-3">{{ note.note }}</td>

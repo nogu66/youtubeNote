@@ -14,8 +14,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
-        return Inertia::render('Notes/Index');
+        return Inertia::render('Notes/Index', [
+            'notes' => Note::all()
+        ]);
     }
 
     /**
@@ -39,7 +40,9 @@ class NoteController extends Controller
      */
     public function show(Note $note)
     {
-        //
+        return Inertia::render('Notes/Show', [
+            'note' => $note
+        ]);
     }
 
     /**
