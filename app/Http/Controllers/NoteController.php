@@ -24,7 +24,7 @@ class NoteController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Notes/Create');
     }
 
     /**
@@ -32,7 +32,17 @@ class NoteController extends Controller
      */
     public function store(StoreNoteRequest $request)
     {
-        //
+        Note::create([
+            'url' => $request->url,
+            'title' => $request->title,
+            'note' => $request->note,
+        ]);
+
+        // return redirect()->route('notes.index');
+        return redirect()->route('notes.index')->with([
+            'message' => '登録しました',
+            'status' => 'success',
+        ]);
     }
 
     /**
