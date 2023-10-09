@@ -6,17 +6,15 @@ import { Head, Link } from "@inertiajs/vue3";
 const props = defineProps({
     notes: Array,
 });
-
-console.log(props.notes);
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Home" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                Home
             </h2>
         </template>
 
@@ -25,94 +23,93 @@ console.log(props.notes);
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <section class="text-gray-600 body-font">
-                            <div class="container py-24 mx-auto">
-                                <!-- <FlashMessage /> -->
+                            <div class="container px-5 py-24 mx-auto">
                                 <div
                                     class="flex flex-col text-center w-full mb-8"
                                 >
                                     <h1
-                                        class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900"
+                                        class="sm:text-4xl text-3xl font-medium title-font text-gray-900"
                                     >
                                         YouTubeNote
                                     </h1>
                                 </div>
-                                <div class="flex pl-4 m-4 w-full mx-auto">
+
+                                <div
+                                    class="flex mb-5 w-full mx-auto items-center"
+                                >
+                                    <input
+                                        type="text"
+                                        name="search"
+                                        v-model="search"
+                                        class="w-4/6 mr-4"
+                                    />
+                                    <button
+                                        class="w-1/6 bg-blue-300 text-white py-2 px-5 mr-4"
+                                        @click="searchCustomers"
+                                    >
+                                        検索
+                                    </button>
                                     <Link
                                         as="button"
                                         :href="route('notes.create')"
-                                        class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                                        class="w-1/6 text-white bg-indigo-500 border-0 py-3 px-10 focus:outline-none hover:bg-indigo-600 rounded"
                                     >
                                         Add Note
                                     </Link>
                                 </div>
-                                <div
-                                    class="lg:w-full w-full mx-auto overflow-auto"
-                                >
-                                    <table
-                                        class="table-fixed w-full text-left whitespace-no-wrap"
+
+                                <div class="flex flex-wrap -m-4">
+                                    <div
+                                        v-for="note in props.notes"
+                                        :key="note.id"
+                                        class="p-4 w-full lg:w-1/3"
                                     >
-                                        <thead>
-                                            <tr>
-                                                <th
-                                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
-                                                >
-                                                    Id
-                                                </th>
-                                                <th
-                                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
-                                                >
-                                                    タイトル
-                                                </th>
-                                                <th
-                                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
-                                                >
-                                                    URL
-                                                </th>
-                                                <th
-                                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
-                                                >
-                                                    メモ
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                v-for="note in props.notes"
-                                                :key="note.id"
-                                                class="h-35"
+                                        <div
+                                            class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative"
+                                        >
+                                            <h1
+                                                class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3 truncate"
                                             >
-                                                <td
-                                                    class="w-1/5 px-4 py-3 text-right"
+                                                {{ note.title }}
+                                            </h1>
+                                            <h2
+                                                class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 truncate"
+                                            >
+                                                {{ note.url }}
+                                            </h2>
+                                            <p
+                                                class="leading-relaxed mb-3 truncate"
+                                            >
+                                                {{ note.note }}
+                                            </p>
+                                            <Link
+                                                :href="
+                                                    route('notes.show', {
+                                                        note: note,
+                                                    })
+                                                "
+                                                class="text-indigo-500 inline-flex items-center"
+                                                >Learn More
+                                                <svg
+                                                    class="w-4 h-4 ml-2"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    fill="none"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
                                                 >
-                                                    <Link
-                                                        :href="
-                                                            route(
-                                                                'notes.show',
-                                                                { note: note }
-                                                            )
-                                                        "
-                                                    >
-                                                        {{ note.id }}
-                                                    </Link>
-                                                </td>
-                                                <td
-                                                    class="w-1/5 px-4 py-3 truncate"
-                                                >
-                                                    {{ note.title }}
-                                                </td>
-                                                <td
-                                                    class="w-1/5 px-4 py-3 truncate"
-                                                >
-                                                    {{ note.url }}
-                                                </td>
-                                                <td
-                                                    class="w-1/5 px-4 py-3 truncate"
-                                                >
-                                                    {{ note.note }}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                    <path d="M5 12h14"></path>
+                                                    <path
+                                                        d="M12 5l7 7-7 7"
+                                                    ></path>
+                                                </svg>
+                                            </Link>
+                                            <div
+                                                class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4"
+                                            ></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
