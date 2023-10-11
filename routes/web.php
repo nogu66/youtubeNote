@@ -28,12 +28,12 @@ use Inertia\Inertia;
 
 Route::redirect('/', '/notes');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('notes', NoteController::class)
-    ->middleware(['auth', 'verified']);
+// Route::resource('notes', NoteController::class)
+//     ->middleware(['auth', 'verified']);
 
 Route::resource('notes', NoteController::class);
 
