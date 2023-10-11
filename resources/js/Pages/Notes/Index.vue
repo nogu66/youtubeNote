@@ -1,6 +1,8 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
+import SvgIcon from "@jamescoyle/vue-icon";
+import { mdiMagnify, mdiPlus } from "@mdi/js";
 // import FlashMessage from "@/Components/FlashMessage.vue";
 
 const props = defineProps({
@@ -44,17 +46,31 @@ const props = defineProps({
                                         class="w-4/6 mr-4"
                                     />
                                     <button
-                                        class="w-1/6 bg-blue-300 text-white py-2 px-5 mr-4"
+                                        class="flex items-center justify-center w-1/6 bg-blue-300 text-white py-3 px-10 mr-4 rounded"
                                         @click="searchCustomers"
                                     >
-                                        検索
+                                        <span class="hidden sm:block"
+                                            >検索</span
+                                        >
+                                        <span class="block sm:hidden">
+                                            <svg-icon
+                                                type="mdi"
+                                                :path="mdiMagnify"
+                                            ></svg-icon>
+                                        </span>
                                     </button>
                                     <Link
                                         as="button"
                                         :href="route('notes.create')"
-                                        class="w-1/6 text-white bg-indigo-500 border-0 py-3 px-10 focus:outline-none hover:bg-indigo-600 rounded"
+                                        class="flex items-center justify-center w-1/6 text-white bg-indigo-500 border-0 py-3 px-10 focus:outline-none hover:bg-indigo-600 rounded"
                                     >
-                                        Add Note
+                                        <span class="hidden sm:block">Add</span>
+                                        <span class="block sm:hidden">
+                                            <svg-icon
+                                                type="mdi"
+                                                :path="mdiPlus"
+                                            ></svg-icon>
+                                        </span>
                                     </Link>
                                 </div>
 
