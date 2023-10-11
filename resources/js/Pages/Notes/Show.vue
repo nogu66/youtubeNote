@@ -3,7 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import SvgIcon from "@jamescoyle/vue-icon";
 import { mdiMagnify, mdiPlus } from "@mdi/js";
-// import FlashMessage from "@/Components/FlashMessage.vue";
 
 const props = defineProps({
     note: Array,
@@ -48,7 +47,7 @@ const props = defineProps({
                                                     type="text"
                                                     id="name"
                                                     name="name"
-                                                    class="flex flex-row flex-wra w-full h-fit bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                                    class="flex flex-row flex-wraw-full h-fit bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                                 >
                                                     {{ props.note.url }}
                                                 </div>
